@@ -1,0 +1,35 @@
+version: '3.10'
+
+services:
+  web:
+    build:
+      context: ./  # The build context is the current folder (D:\FORM\form\formapp)
+      dockerfile: Dockerfile  # Path to Dockerfile (no need for 'form/formapp')
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app  # Mount the current directory to /app inside the container
+    ports:
+      - "8000:8000"
+    environment:
+      DB_NAME: KAMAL
+      DB_USER: root
+      DB_PASSWORD: locuz@123
+      DB_HOST: db
+      DB_PORT: 3306
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: KAMAL
+      MYSQL_USER: root
+      MYSQL_PASSWORD: locuz@123
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
