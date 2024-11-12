@@ -18,7 +18,7 @@ COPY formapp/requirements.txt /app/
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire project into the container
+# Copy the entire project into the container (after installing dependencies)
 COPY . /app/
 
 # Expose the port that Django will run on
