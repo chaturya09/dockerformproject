@@ -1,24 +1,17 @@
-
-
 services:
   web:
     build:
-      context: .  # Build from the current directory
-      dockerfile: Dockerfile  # Path to Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
-
-    volumes:
-      - .:/app  # Mount the current directory to /app inside the container
-    ports:
-      - "8000:8000"  # Map port 8000 from container to host
+      context: .
+      dockerfile: Dockerfile
+    command: ./wait-for-it.sh db:3306 -- python manage.py runserver 0.0.0.0:8000
     environment:
       DB_NAME: KAMAL
       DB_USER: root
       DB_PASSWORD: locuz@123
-      DB_HOST: db
+      DB_HOST: db  # Ensure this matches the service name 'db'
       DB_PORT: 3306
     depends_on:
-      - db  # Ensures that db is started before the web service
+      - db
 
   db:
     image: mysql:5.7
@@ -30,7 +23,4 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql  # Persist MySQL data
-
-volumes:
-  mysql_data:  # Define a volume for MySQL data persistence
+      - mysql_data:/var/lib/mysql
