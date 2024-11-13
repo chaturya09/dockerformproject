@@ -1,9 +1,11 @@
+version: '3'
+
 services:
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    command: ./wait-for-it.sh db:3306 -- python manage.py runserver 0.0.0.0:8000
+    command: sh ./wait-for-it.sh db:3306 -- python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -30,4 +32,4 @@ services:
       - mysql_data:/var/lib/mysql
 
 volumes:
-  mysql_data:  # Define the volume here
+  mysql_data:
