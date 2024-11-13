@@ -4,11 +4,15 @@ services:
       context: .
       dockerfile: Dockerfile
     command: ./wait-for-it.sh db:3306 -- python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
     environment:
       DB_NAME: KAMAL
       DB_USER: root
       DB_PASSWORD: locuz@123
-      DB_HOST: db  # Ensure this matches the service name 'db'
+      DB_HOST: db
       DB_PORT: 3306
     depends_on:
       - db
@@ -24,3 +28,6 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:  # Define the volume here
