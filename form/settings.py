@@ -74,16 +74,19 @@ WSGI_APPLICATION = 'form.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv('DB_NAME', 'KAMAL'),
         'USER': os.getenv('DB_USER', 'root'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'locuz@123'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),  # Fallback to 'localhost' when not in Docker
+        'HOST': os.getenv('DB_HOST', 'db'),  # 'db' is the name of the service in docker-compose.yml
         'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
+
 
 
 # Password validation
