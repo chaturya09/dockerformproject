@@ -5,7 +5,8 @@ services:
     build:
       context: .  # Build from the current directory
       dockerfile: Dockerfile  # Path to Dockerfile
-    command: ./wait-for-it.sh db:3306 -- python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
+
     volumes:
       - .:/app  # Mount the current directory to /app inside the container
     ports:
