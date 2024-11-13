@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME', 'KAMAL'),
         'USER': os.getenv('DB_USER', 'root'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'locuz@123'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),  # Change to localhost for local dev
+        'HOST': os.getenv('DB_HOST', '127.0.0.1'),  # Change to localhost for local dev
         'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
