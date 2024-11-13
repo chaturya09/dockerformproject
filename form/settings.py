@@ -77,11 +77,9 @@ WSGI_APPLICATION = 'form.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME', 'KAMAL'),
-        'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'locuz@123'),
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),  # Change to localhost for local dev
-        'PORT': os.getenv('DB_PORT', '3306'),
+        'NAME': 'KAMAL',
+        'USER': 'root',
+        'PASSWORD': 'locuz@123',
     }
 }
 
